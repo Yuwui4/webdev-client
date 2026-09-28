@@ -23,7 +23,7 @@ export default function Images() {
       Loading a personal local image:
       <br />
       <img
-        id="wd-teslabot"
+        id="wd-your-image"
         src="/images/EnaBG2.png"
         height="300px"
         alt="Ena from Project Sekai, a relatable card art"
