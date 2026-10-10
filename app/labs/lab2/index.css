@@ -1,0 +1,81 @@
+/* p {
+  background-color: green;
+  color: white;
+} */
+
+/* 
+1. p#my-id → a paragraph with that ID.
+2. p #my-id → an element with that ID inside a paragraph.
+3. #wd-lab2 h3 → an h3 inside the element with ID wd-lab2. */
+
+/* tag second lets any p with tag have it */
+p#wd-id-selector-1 {
+  background-color: red;
+  color: white;
+}
+
+p#wd-id-selector-2 {
+  background-color: yellow;
+  color: black;
+}
+
+p#wd-ai-id-selector {
+  background-color: purple;
+  color: white;
+}
+
+p#wd-id-selector-3 {
+    background-color: rosybrown;
+    color: gold;
+}
+
+/* tag first to keep rules inside of the tage */
+#wd-lab2 h3 {
+    background-color: salmon;
+    color: pink;
+}
+
+#wd-lab2 h2 {
+  background-color: navy;
+  color: white;
+}
+
+.wd-class-selector {
+  background-color: yellow;
+  color: blue;
+}
+
+.wd-your-class {
+    background-color: royalblue;
+    color:aliceblue
+}
+
+.wd-ai-class-selector {
+  background-color: teal;
+  color: white;
+}
+
+.wd-selector-1 .wd-selector-3 {
+  background-color: red;
+  color: white;
+}
+
+.wd-selector-2 > .wd-selector-3 > .wd-selector-4 {
+  background-color: yellow;
+  color: blue;
+}
+
+.wd-selector-1 .wd-selector-mine-3 {
+  background-color: pink;
+  color: blanchedalmond;
+}
+
+.wd-selector-2 > .wd-selector-mine-3 > .wd-selector-mine-4 {
+  background-color: aliceblue;
+  color: cornflowerblue;
+}
+
+.wd-selector-1 .wd-ai-selector-5 {
+  background-color: darkgreen;
+  color: white;
+}
