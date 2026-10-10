@@ -1,30 +1,37 @@
 import "./index.css";
+import ForegroundColors from "./ForegroundColors";
+import BackgroundColors from "./BackgroundColors";
+import Borders from "./Borders";
+import Padding from "./Padding";
+import BoxModel from "./BoxModel";
+import Corners from "./Corners";
+import Dimensions from "./Dimensions";
+import Display from "./Display";
+import Positions from "./Positions";
 
 export default function Lab2() {
   return (
-    <div>
+    <div id="wd-lab2">
+      <h2>Lab 2 - Cascading Style Sheets</h2>
+      <h3>Styling with the STYLE attribute</h3>
+      <p>
+        Style attribute allows configuring look and feel right on the
+        element. Although it&apos;s very convenient it is considered bad
+        practice and you should avoid using the style attribute
+      </p>
+      <p style={{ backgroundColor: "green", color: "yellow" }}>
+        Gooby gooby goo! I really want to play vintage story right now. 
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+        Maecenas ullamcorper ullamcorper porttitor.
+      </p>
+      {/* AI part*/}
+      <p
+        id="wd-ai-style-attr"
+        style={{ backgroundColor: "purple", color: "white" }}
+      >
+        This paragraph demonstrates styling with a purple background and white text using the style attribute.
+      </p>
 
-      <div id="wd-lab2">
-        <h2>Lab 2 - Cascading Style Sheets</h2>
-        <h3>Styling with the STYLE attribute</h3>
-        <p>
-          Style attribute allows configuring look and feel right on the
-          element. Although it&apos;s very convenient it is considered bad
-          practice and you should avoid using the style attribute
-        </p>
-        <p style={{ backgroundColor: "green", color: "yellow" }}>
-          Gooby gooby goo! I really want to play vintage story right now. 
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-          Maecenas ullamcorper ullamcorper porttitor.
-        </p>
-        {/* AI part*/}
-        <p
-          id="wd-ai-style-attr"
-          style={{ backgroundColor: "purple", color: "white" }}
-        >
-          This paragraph demonstrates styling with a purple background and white text using the style attribute.
-        </p>
-      </div>
 
       <div id="wd-css-id-selectors">
         <h3>ID selectors</h3>
@@ -68,8 +75,9 @@ export default function Lab2() {
         <h4 className="wd-ai-class-selector">
           This heading uses the same CSS class.
         </h4>
+      </div>
 
-        <div id="wd-css-document-structure">
+      <div id="wd-css-document-structure">
           <div className="wd-selector-1">
             <h3>Document structure selectors</h3>
             <div className="wd-selector-2">
@@ -94,16 +102,25 @@ export default function Lab2() {
               </p>
               <p className="wd-selector-mine-3">
                 Gooby gooby goo!
-                <h2 className="wd-selector-mine-4">
+                <span className="wd-selector-mine-4">
                   Chicken jockey.
-                </h2>
+                </span>
                 California girls, we're unforgettable!!
               </p>
             </div>
           </div>
         </div>
 
-      </div>
+        <ForegroundColors />
+        <BackgroundColors />
+        <Borders />
+        <Padding />
+        <BoxModel />
+        <Corners />
+        <Dimensions />
+        <Display />
+        <Positions />
+
     </div>
   );
 }
