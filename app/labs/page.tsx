@@ -23,6 +23,9 @@ export default function Labs() {
         <li>
           <Link href="/">Kambaz</Link>
         </li>
+        <li>
+          <Link href="https://github.com/Yuwui4">Github - Yui Fang</Link>
+        </li>
       </ul>
     </div>
   );
