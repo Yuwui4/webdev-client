@@ -135,6 +135,10 @@ p#wd-id-selector-3 {
 .wd-margin-all-around {
   margin: 30px;
 }
+.wd-margin-bottom-right {
+  margin-bottom: 100px;
+  margin-right: 100px;
+}
 
 
 .wd-box-model-parent {

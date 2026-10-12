@@ -14,6 +14,7 @@ import GridLayout from "./GridLayout";
 import Flex from "./Flex";
 import MediaQueriesDemo from "./MediaQueriesDemo";
 import ReactIconsSampler from "./ReactIconsSampler";
+import Margins from "./Margins";
 
 export default function Lab2() {
   return (
@@ -125,6 +126,7 @@ export default function Lab2() {
         <BackgroundColors />
         <Borders />
         <Padding />
+        <Margins />
         <BoxModel />
         <Corners />
         <Dimensions />
