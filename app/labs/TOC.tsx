@@ -40,6 +40,11 @@ export default function TOC() {
           Kambaz
         </Link>
       </li>
+      <li>
+        <Link href="https://github.com/Yuwui4" id="wd-github">
+          Github - Zhu Fang
+        </Link>
+      </li>
     </ul>
   );
 }
