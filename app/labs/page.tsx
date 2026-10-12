@@ -3,7 +3,9 @@ import Link from "next/link";
 export default function Labs() {
   return (
     <div id="wd-labs">
-      <h1>Labs - Zhu Fang</h1>
+      <h1>Labs</h1>
+      <h2>Zhu Fang</h2>
+      <p>CS4550 Section 01</p>
       <ul>
         <li>
           <Link href="/labs/lab1">Lab 1: HTML Examples</Link>
@@ -24,7 +26,14 @@ export default function Labs() {
           <Link href="/">Kambaz</Link>
         </li>
         <li>
-          <Link href="https://github.com/Yuwui4/webdev-client/" id="wd-github">Github - Zhu Fang</Link>
+          <Link 
+            href="https://github.com/Yuwui4/webdev-client/" 
+            id="wd-github"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Github
+          </Link>
         </li>
       </ul>
     </div>

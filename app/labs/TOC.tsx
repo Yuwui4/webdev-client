@@ -41,9 +41,14 @@ export default function TOC() {
         </Link>
       </li>
       <li>
-        <Link href="https://github.com/Yuwui4/webdev-client/" id="wd-github">
-          Github - Zhu Fang
-        </Link>
+        <Link 
+            href="https://github.com/Yuwui4/webdev-client/" 
+            id="wd-github"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Github
+          </Link>
       </li>
     </ul>
   );
