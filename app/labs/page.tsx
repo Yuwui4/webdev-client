@@ -24,7 +24,7 @@ export default function Labs() {
           <Link href="/">Kambaz</Link>
         </li>
         <li>
-          <Link href="https://github.com/Yuwui4" id="wd-github">Github - Zhu Fang</Link>
+          <Link href="https://github.com/Yuwui4/webdev-client/" id="wd-github">Github - Zhu Fang</Link>
         </li>
       </ul>
     </div>
