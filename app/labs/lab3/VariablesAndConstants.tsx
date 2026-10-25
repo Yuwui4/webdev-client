@@ -1,0 +1,21 @@
+export default function VariablesAndConstants() {
+  var functionScoped = 2;
+  let blockScoped = 5;
+  let goobName = "yui";
+  const constant1 = functionScoped - blockScoped;
+  const hello = "hello world";
+  const sampleSum = functionScoped + blockScoped;
+
+  return (
+    <div id="wd-variables-and-constants">
+      <h4>Variables and Constants</h4>
+      functionScoped = {functionScoped} <br />
+      blockScoped = {blockScoped}       <br />
+      constant1 = {constant1}           <br />
+      name = {goobName}                 <br />
+      greeting = {hello}                <br />
+      sampleSum = {sampleSum}
+      <hr />
+    </div>
+  );
+}
