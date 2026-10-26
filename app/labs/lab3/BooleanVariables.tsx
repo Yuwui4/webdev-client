@@ -14,7 +14,8 @@ export default function BooleanVariables() {
   let string2 = "goob";
   let falsePersonal = string1 === string2;
   let numString = "123";
-  let compare123 = numString == numberVariable;
+  // commented this out cause it won't let me build
+  // let compare123 = numString == numberVariable;
 
   const true6 = numberVariable !== 0;
 
@@ -30,7 +31,7 @@ export default function BooleanVariables() {
       true5 = {true5 + ""}   <br />
       false3 = {false3 + ""} <br />
       falsePersonal = {falsePersonal + ""} <br />
-      compare123 = {compare123 + ""} <br />
+      {/* compare123 = {compare123 + ""} <br /> */}
       true6 = {true6 + ""}
       <hr />
     </div>
