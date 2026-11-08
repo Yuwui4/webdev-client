@@ -3,6 +3,9 @@
 import { CounterProvider } from "./CounterContext";
 import ContextCounterRead from "./ContextCounterRead";
 import ContextCounterWrite from "./ContextCounterWrite";
+import { TodosProvider } from "./todosContext";
+import ReactContextTodoList from "./ReactContextTodoList";
+import ContextProfileForm from "./ContextProfileForm";
 
 export default function ContextExamples() {
   return (
@@ -12,11 +15,17 @@ export default function ContextExamples() {
         Two siblings share one counter without the parent passing props
         through the middle.
       </p>
+
       <CounterProvider>
         <ContextCounterRead />
         <ContextCounterWrite />
       </CounterProvider>
-      <hr />
+
+      <TodosProvider>
+        <ReactContextTodoList />
+      </TodosProvider>
+
+      <ContextProfileForm />
     </div>
   );
 }
