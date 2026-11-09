@@ -13,6 +13,7 @@ import ArrayStateVariable from "./ArrayStateVariable";
 import ParentStateComponent from "./ParentStateComponent";
 import PropDrilling from "./PropDrilling";
 import UrlEncoding from "./UrlEncoding";
+import Effect from "./Effect";
 
 export default function Lab4() {
   const sayHello = (message: string) => {
@@ -49,6 +50,7 @@ export default function Lab4() {
       <ParentStateComponent />
       <PropDrilling />
       <UrlEncoding />
+      <Effect />
     </div>
   );
 }
