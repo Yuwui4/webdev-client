@@ -4,12 +4,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+// uh autograder don't want the c?
 // the lab keep giving personal tasks that are the exact same as the do on your own?
 // im just gonna ignore giving it to the ai if this happens again from now on
 export default function UrlEncoding() {
   const [a, setA] = useState("5");
   const [b, setB] = useState("10");
-  const [c, setC] = useState("2")
+  // const [c, setC] = useState("2")
   const router = useRouter();
   const baseUrl = "/labs/lab4/url-encoding";
 
@@ -17,15 +18,16 @@ export default function UrlEncoding() {
     const params = new URLSearchParams();
     params.set("a", a);
     params.set("b", b);
-    params.set("c", c);
+    // params.set("c", c);
     router.push(`${baseUrl}/query-params?${params.toString()}`);
   };
 
   const goToPathVersion = () => {
     const safeA = encodeURIComponent(a);
     const safeB = encodeURIComponent(b);
-    const safeC = encodeURIComponent(c);
-    router.push(`${baseUrl}/path-params/${safeA}/${safeB}/${safeC}`);
+    // const safeC = encodeURIComponent(c);
+    // /${safeC}
+    router.push(`${baseUrl}/path-params/${safeA}/${safeB}`);
   };
 
   return (
@@ -49,13 +51,13 @@ export default function UrlEncoding() {
         className="mb-3 block w-full rounded border border-neutral-300 px-3 py-1.5"
         id="wd-url-b"
       />
-      <input
+      {/* <input
         type="number"
         value={c}
         onChange={(e) => setC(e.target.value)}
         className="mb-3 block w-full rounded border border-neutral-300 px-3 py-1.5"
         id="wd-url-c"
-      />
+      /> */}
       <h4>Programmatic navigation (using router.push):</h4>
       <button
         type="button"
@@ -63,7 +65,7 @@ export default function UrlEncoding() {
         className="mb-2 w-full rounded bg-green-600 px-3 py-1.5 text-sm font-medium text-white"
         id="wd-url-query-programmatic"
       >
-        {a} + {b} + {c} → Query Params (programmatic)
+        {a} + {b} {/* + {c} */} → Query Params (programmatic)
       </button>
       <button
         type="button"
@@ -71,22 +73,23 @@ export default function UrlEncoding() {
         className="mb-3 w-full rounded bg-green-600 px-3 py-1.5 text-sm font-medium text-white"
         id="wd-url-path-programmatic"
       >
-        {a} + {b} + {c} → Path Params (programmatic)
+        {a} + {b} {/* + {c} */} → Path Params (programmatic)
       </button>
       <h4>Declarative navigation (using Link):</h4>
       <Link
-        href={`${baseUrl}/query-params?a=${encodeURIComponent(a)}&b=${encodeURIComponent(b)}&c=${encodeURIComponent(c)}`}
+        // &c=${encodeURIComponent(c)}
+        href={`${baseUrl}/query-params?a=${encodeURIComponent(a)}&b=${encodeURIComponent(b)}`}
         className="mb-2 block w-full rounded bg-blue-600 px-3 py-1.5 text-center text-sm font-medium text-white no-underline"
         id="wd-url-query-link"
       >
-        {a} + {b} + {c} → Query Params (Link)
+        {a} + {b} {/* + {c} */} → Query Params (Link)
       </Link>
       <Link
-        href={`${baseUrl}/path-params/${encodeURIComponent(a)}/${encodeURIComponent(b)}/${encodeURIComponent(c)}`}
+        href={`${baseUrl}/path-params/${encodeURIComponent(a)}/${encodeURIComponent(b)}`}
         className="mb-2 block w-full rounded bg-blue-600 px-3 py-1.5 text-center text-sm font-medium text-white no-underline"
         id="wd-url-path-link"
       >
-        {a} + {b} + {c} → Path Params (Link)
+        {a} + {b} {/* + {c} */} → Path Params (Link)
       </Link>
       <hr />
     </div>
