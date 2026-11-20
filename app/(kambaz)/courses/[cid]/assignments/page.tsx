@@ -1,15 +1,18 @@
+"use client";
+
+import Link from "next/link";
+import { useParams } from "next/navigation";
 import { FaPlus, FaSearch } from "react-icons/fa";
 import AssignmentItem from "./AssignmentItem";
-import * as db from "../../../database";
+import { useAssignmentsStore } from "../../../store/assignmentsStore";
 
-export default async function Assignments({
-  params,
-}: {
-  params: Promise<{ cid: string }>;
-}) {
-  const { cid } = await params;
-  const assignementsFiltered = db.assignments.filter((assignment) => assignment.course === cid);
-  
+export default function Assignments() {
+  const { cid } = useParams();
+
+  // changed it out of database
+  const assignments = useAssignmentsStore((state) => state.assignments);
+  const assignmentsFiltered = assignments.filter((assignment) => assignment.course === cid);
+
   return (
     <div id="wd-assignments">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
@@ -21,6 +24,7 @@ export default async function Assignments({
             className="rounded border py-1.5 pr-3 pl-9 text-sm"
           />
         </div>
+
         <div className="flex gap-2">
           <button
             id="wd-add-assignment-group"
@@ -29,28 +33,37 @@ export default async function Assignments({
           >
             <FaPlus /> Group
           </button>
-          <button
+
+          {/* new assignment, since id gets assigned, aid can be anything, make it new so the editor knows */}
+          <Link
             id="wd-add-assignment"
-            type="button"
-            className="inline-flex items-center gap-1 rounded bg-red-600 px-3 py-1.5 text-sm font-medium text-white"
+            href={`/courses/${cid}/assignments/new`}
+            className="inline-flex items-center gap-1 rounded bg-red-600 px-3 py-1.5 text-sm font-medium text-white no-underline"
           >
             <FaPlus /> Assignment
-          </button>
+          </Link>
         </div>
       </div>
+
       <h3
         id="wd-assignments-title"
         className="mb-3 flex items-center justify-between rounded bg-neutral-200 p-3 text-lg"
       >
         <span>ASSIGNMENTS 40% of Total</span>
-        <button type="button" className="rounded border bg-white px-2 py-0.5 text-sm">
+
+        <button
+          type="button"
+          className="rounded border bg-white px-2 py-0.5 text-sm"
+        >
           <FaPlus />
         </button>
       </h3>
+
+      {/* updated to take info from store */}
       <ul id="wd-assignment-list" className="m-0 list-none p-0">
-        {assignementsFiltered.map((assignment) => (
+        {assignmentsFiltered.map((assignment) => (
           <AssignmentItem
-            cid={cid}
+            cid={String(cid)}
             aid={assignment._id}
             title={assignment.title}
             details={`Multiple Modules | Not available until ${assignment.available} | Due ${assignment.due} | ${assignment.points} pts`}
@@ -61,6 +74,71 @@ export default async function Assignments({
     </div>
   );
 }
+
+
+// import { FaPlus, FaSearch } from "react-icons/fa";
+// import AssignmentItem from "./AssignmentItem";
+// import * as db from "../../../database";
+
+// export default async function Assignments({
+//   params,
+// }: {
+//   params: Promise<{ cid: string }>;
+// }) {
+//   const { cid } = await params;
+//   const assignementsFiltered = db.assignments.filter((assignment) => assignment.course === cid);
+  
+//   return (
+//     <div id="wd-assignments">
+//       <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+//         <div className="relative">
+//           <FaSearch className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-neutral-500" />
+//           <input
+//             placeholder="Search for Assignments"
+//             id="wd-search-assignment"
+//             className="rounded border py-1.5 pr-3 pl-9 text-sm"
+//           />
+//         </div>
+//         <div className="flex gap-2">
+//           <button
+//             id="wd-add-assignment-group"
+//             type="button"
+//             className="inline-flex items-center gap-1 rounded border px-3 py-1.5 text-sm"
+//           >
+//             <FaPlus /> Group
+//           </button>
+//           <button
+//             id="wd-add-assignment"
+//             type="button"
+//             className="inline-flex items-center gap-1 rounded bg-red-600 px-3 py-1.5 text-sm font-medium text-white"
+//           >
+//             <FaPlus /> Assignment
+//           </button>
+//         </div>
+//       </div>
+//       <h3
+//         id="wd-assignments-title"
+//         className="mb-3 flex items-center justify-between rounded bg-neutral-200 p-3 text-lg"
+//       >
+//         <span>ASSIGNMENTS 40% of Total</span>
+//         <button type="button" className="rounded border bg-white px-2 py-0.5 text-sm">
+//           <FaPlus />
+//         </button>
+//       </h3>
+//       <ul id="wd-assignment-list" className="m-0 list-none p-0">
+//         {assignementsFiltered.map((assignment) => (
+//           <AssignmentItem
+//             cid={cid}
+//             aid={assignment._id}
+//             title={assignment.title}
+//             details={`Multiple Modules | Not available until ${assignment.available} | Due ${assignment.due} | ${assignment.points} pts`}
+//             key={assignment._id}
+//           />
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// }
 
 
         {/* at least three AssignmentItems using cid
