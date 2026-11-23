@@ -23,17 +23,22 @@ type CoursesStore = {
   addCourse: (course: Course) => void;
   deleteCourse: (courseId: string) => void;
   updateCourse: (course: Course) => void;
+  setCourses: (courses: Course[]) => void;
 };
 
 export const useCoursesStore = create<CoursesStore>((set) => ({
   courses: coursesJson,
+  // addCourse: (course) =>
+  //   set((state) => ({
+  //     courses: [
+  //       ...state.courses,
+  //       { ...emptyCourse, ...course, _id: crypto.randomUUID() },
+  //     ],
+  //   })),
   addCourse: (course) =>
-    set((state) => ({
-      courses: [
-        ...state.courses,
-        { ...emptyCourse, ...course, _id: crypto.randomUUID() },
-      ],
-    })),
+  set((state) => ({
+    courses: [...state.courses, course],
+  })),
   deleteCourse: (courseId) =>
     set((state) => ({
       courses: state.courses.filter((course) => course._id !== courseId),
@@ -42,6 +47,7 @@ export const useCoursesStore = create<CoursesStore>((set) => ({
     set((state) => ({
       courses: state.courses.map((c) => (c._id === course._id ? course : c)),
     })),
+  setCourses: (courses) => set({ courses }),
 }));
 
 export { emptyCourse };

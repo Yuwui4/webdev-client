@@ -21,26 +21,31 @@ export type CourseModule = {
 
 type ModulesStore = {
   modules: CourseModule[];
-  addModule: (module: { name: string; course: string }) => void;
+  addModule: (module: CourseModule) => void;
   deleteModule: (moduleId: string) => void;
   updateModule: (module: CourseModule) => void;
   editModule: (moduleId: string) => void;
+  setModules: (modules: CourseModule[]) => void;
 };
 
 export const useModulesStore = create<ModulesStore>((set) => ({
   modules: modulesJson as CourseModule[],
+  // addModule: (module) =>
+  //   set((state) => ({
+  //     modules: [
+  //       ...state.modules,
+  //       {
+  //         _id: crypto.randomUUID(),
+  //         name: module.name,
+  //         description: "",
+  //         course: module.course,
+  //         lessons: [],
+  //       },
+  //     ],
+  //   })),
   addModule: (module) =>
     set((state) => ({
-      modules: [
-        ...state.modules,
-        {
-          _id: crypto.randomUUID(),
-          name: module.name,
-          description: "",
-          course: module.course,
-          lessons: [],
-        },
-      ],
+      modules: [...state.modules, module],
     })),
   deleteModule: (moduleId) =>
     set((state) => ({
@@ -56,4 +61,5 @@ export const useModulesStore = create<ModulesStore>((set) => ({
         m._id === moduleId ? { ...m, editing: true } : m,
       ),
     })),
+  setModules: (modules) => set({ modules }),
 }));

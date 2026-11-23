@@ -4,7 +4,7 @@ import { useCoursesStore, type Course } from "../store/coursesStore";
 import { useEnrollmentsStore } from "../store/enrollmentsStore";
 import { useAccountContext } from "../account/AccountContext";
 
-export default function CourseCard({ course, onEdit, }: { course: Course; onEdit: () => void;}) {
+export default function CourseCard({ course, onEdit, onDelete }: { course: Course; onEdit: () => void; onDelete: () => void;}) {
   const deleteCourse = useCoursesStore((state) => state.deleteCourse);
   const { currentUser } = useAccountContext();
   const { enrollments, enrollIntoCourse, unenrollFromCourse } =
@@ -46,7 +46,7 @@ export default function CourseCard({ course, onEdit, }: { course: Course; onEdit
           <button type="button" id="wd-delete-course-click" className="ms-2 inline-flex items-center justify-center rounded bg-red-600 px-3 py-1.5 text-sm font-medium text-white"
             onClick={(event) => {
               event.preventDefault();
-              deleteCourse(course._id);
+              onDelete();
             }} >
             Delete
           </button>

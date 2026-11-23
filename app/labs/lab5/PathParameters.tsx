@@ -9,7 +9,7 @@ export default function PathParameters() {
     
   return (
     <div>
-      <h4>Path Parameters</h4>
+      <h3>Path Parameters</h3>
 
       <div className="mb-4 flex gap-2">
         <input type="number" className="border rounded p-2" value={a} onChange={(e) => setA(e.target.value)} />

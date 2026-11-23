@@ -1,25 +1,18 @@
 import { FaCheckCircle, FaPencilAlt, FaTrash } from "react-icons/fa";
 import { BsPlus } from "react-icons/bs";
 import { IoEllipsisVertical } from "react-icons/io5";
-import { useModulesStore } from "../../../store/modulesStore";
 
-export default function ModuleControlButtons({
-  moduleId,
-}: {
-  moduleId: string;
-}) {
-  const deleteModule = useModulesStore((state) => state.deleteModule);
-  const editModule = useModulesStore((state) => state.editModule);
+export default function ModuleControlButtons({ moduleId, onRemoveModule, onEditModule, } : { moduleId: string; onRemoveModule: (moduleId: string) => void; onEditModule: () => void; }) {
   return (
     <div className="flex items-center gap-2">
       <FaPencilAlt
         className="cursor-pointer text-blue-600"
-        onClick={() => editModule(moduleId)}
+        onClick={onEditModule}
         title="Edit module"
       />
       <FaTrash
         className="cursor-pointer text-red-600"
-        onClick={() => deleteModule(moduleId)}
+        onClick={() => onRemoveModule(moduleId)}
         title="Delete module"
       />
       <FaCheckCircle className="text-green-600" />
@@ -28,3 +21,34 @@ export default function ModuleControlButtons({
     </div>
   );
 }
+
+// import { FaCheckCircle, FaPencilAlt, FaTrash } from "react-icons/fa";
+// import { BsPlus } from "react-icons/bs";
+// import { IoEllipsisVertical } from "react-icons/io5";
+// import { useModulesStore } from "../../../store/modulesStore";
+
+// export default function ModuleControlButtons({
+//   moduleId,
+// }: {
+//   moduleId: string;
+// }) {
+//   const deleteModule = useModulesStore((state) => state.deleteModule);
+//   const editModule = useModulesStore((state) => state.editModule);
+//   return (
+//     <div className="flex items-center gap-2">
+//       <FaPencilAlt
+//         className="cursor-pointer text-blue-600"
+//         onClick={() => editModule(moduleId)}
+//         title="Edit module"
+//       />
+//       <FaTrash
+//         className="cursor-pointer text-red-600"
+//         onClick={() => deleteModule(moduleId)}
+//         title="Delete module"
+//       />
+//       <FaCheckCircle className="text-green-600" />
+//       <BsPlus className="text-3xl" />
+//       <IoEllipsisVertical className="text-xl" />
+//     </div>
+//   );
+// }

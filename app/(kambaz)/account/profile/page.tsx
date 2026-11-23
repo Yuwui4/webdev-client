@@ -3,23 +3,51 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAccountContext, type User } from "../AccountContext";
+import * as client from "../client";
 
 export default function Profile() {
   const [profile, setProfile] = useState<User | null>(null);
   const { currentUser, setCurrentUser } = useAccountContext();
   const router = useRouter();
 
-  useEffect(() => {
-    if (!currentUser) {
-      router.push("/account/signin");
-      return;
-    }
-    setProfile(currentUser);
-  }, [currentUser, router]);
+  // useEffect(() => {
+  //   if (!currentUser) {
+  //     router.push("/account/signin");
+  //     return;
+  //   }
+  //   setProfile(currentUser);
+  // }, [currentUser, router]);
 
-  const signout = () => {
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const user = await client.profile();
+      if (!user) {
+        router.push("/account/signin");
+        return;
+      }
+      setCurrentUser(user);
+      setProfile(user);
+    };
+
+    fetchProfile();
+  }, [router, setCurrentUser]);
+
+
+  // const signout = () => {
+  //   setCurrentUser(null);
+  //   router.push("/account/signin");
+  // };
+
+  const signout = async () => {
+    await client.signout();
     setCurrentUser(null);
     router.push("/account/signin");
+  };
+
+  const updateProfile = async () => {
+    if (!profile) return;
+    const user = await client.updateUser(profile);
+    setCurrentUser(user);
   };
 
   if (!profile) return null;
@@ -93,6 +121,15 @@ export default function Profile() {
         <option value="FACULTY">Faculty</option>
         <option value="STUDENT">Student</option>
       </select>
+
+      <button
+        type="button"
+        onClick={updateProfile}
+        id="wd-update-btn"
+        className="mb-2 block w-50 rounded bg-blue-700 px-3 py-2 text-center text-white no-underline hover:bg-blue-800"
+      >
+        Update
+      </button>
 
       <button 
         type="button" 

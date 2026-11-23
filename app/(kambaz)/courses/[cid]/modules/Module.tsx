@@ -2,7 +2,7 @@ import ModuleControlButtons from "./ModuleControlButtons";
 import Lesson from "./Lesson";
 import { useModulesStore, type CourseModule } from "../../../store/modulesStore";
 
-export default function Module({ module }: { module: CourseModule }) {
+export default function Module({ module, onUpdateModule, onRemoveModule, } : { module: CourseModule; onUpdateModule: (module: CourseModule) => void; onRemoveModule: (moduleId: string) => void;}) {
   const updateModule = useModulesStore((state) => state.updateModule);
   return (
     <li className="wd-module mb-5 overflow-hidden border border-neutral-400 p-0 text-xl">
@@ -15,7 +15,7 @@ export default function Module({ module }: { module: CourseModule }) {
               }
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  updateModule({ ...module, editing: false });
+                  onUpdateModule({ ...module, editing: false });
                 }
               }}
             />
@@ -26,7 +26,11 @@ export default function Module({ module }: { module: CourseModule }) {
 
         <span className="ms-2 flex items-center gap-2">
 
-          <ModuleControlButtons moduleId={module._id} />
+          <ModuleControlButtons
+            moduleId={module._id}
+            onRemoveModule={onRemoveModule}
+            onEditModule={() => updateModule({ ...module, editing: true })}
+          />
 
         </span>
       </div>
@@ -40,6 +44,49 @@ export default function Module({ module }: { module: CourseModule }) {
     </li>
   );
 }
+
+// import ModuleControlButtons from "./ModuleControlButtons";
+// import Lesson from "./Lesson";
+// import { useModulesStore, type CourseModule } from "../../../store/modulesStore";
+
+// export default function Module({ module }: { module: CourseModule }) {
+//   const updateModule = useModulesStore((state) => state.updateModule);
+//   return (
+//     <li className="wd-module mb-5 overflow-hidden border border-neutral-400 p-0 text-xl">
+//       <div className="wd-title flex items-center justify-between bg-neutral-200 p-3 ps-2">
+//         <span className="min-w-0 flex-1">
+//           {module.editing ? (
+//             <input defaultValue={module.name} className="w-1/2 rounded border border-neutral-300 px-2 py-1 text-base"
+//               onChange={(e) =>
+//                 updateModule({ ...module, name: e.target.value })
+//               }
+//               onKeyDown={(e) => {
+//                 if (e.key === "Enter") {
+//                   updateModule({ ...module, editing: false });
+//                 }
+//               }}
+//             />
+//           ) : (
+//             module.name
+//           )}
+//         </span>
+
+//         <span className="ms-2 flex items-center gap-2">
+
+//           <ModuleControlButtons moduleId={module._id} />
+
+//         </span>
+//       </div>
+
+//       <ul className="wd-lessons m-0 list-none p-0">
+//         {module.lessons?.map((lesson) => (
+//           <Lesson key={lesson._id} title={lesson.name} />
+//         ))}
+//       </ul>
+
+//     </li>
+//   );
+// }
 
 // import type { ReactNode } from "react";
 // import GreenCheckmark from "./GreenCheckmark";
