@@ -1,17 +1,31 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { FaPlus, FaSearch } from "react-icons/fa";
 import AssignmentItem from "./AssignmentItem";
 import { useAssignmentsStore } from "../../../store/assignmentsStore";
+import * as client from "../../client";
 
 export default function Assignments() {
   const { cid } = useParams();
 
-  // changed it out of database
   const assignments = useAssignmentsStore((state) => state.assignments);
-  const assignmentsFiltered = assignments.filter((assignment) => assignment.course === cid);
+  const setAssignments = useAssignmentsStore((state) => state.setAssignments);
+  const deleteAssignment = useAssignmentsStore((state) => state.deleteAssignment);
+
+  const courseId = String(cid);
+
+  useEffect(() => {
+    const load = async () => { setAssignments(await client.findAssignmentsForCourse(courseId)); };
+    load();
+  }, [courseId]);
+
+  const onDeleteAssignment = async (assignmentId: string) => {
+    await client.deleteAssignment(assignmentId);
+    deleteAssignment(assignmentId);
+  };
 
   return (
     <div id="wd-assignments">
@@ -61,13 +75,14 @@ export default function Assignments() {
 
       {/* updated to take info from store */}
       <ul id="wd-assignment-list" className="m-0 list-none p-0">
-        {assignmentsFiltered.map((assignment) => (
+        {assignments.map((assignment) => (
           <AssignmentItem
-            cid={String(cid)}
+            cid={courseId}
             aid={assignment._id}
             title={assignment.title}
             details={`Multiple Modules | Not available until ${assignment.available} | Due ${assignment.due} | ${assignment.points} pts`}
             key={assignment._id}
+            onDelete={onDeleteAssignment}
           />
         ))}
       </ul>

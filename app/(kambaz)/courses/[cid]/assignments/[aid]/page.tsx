@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { emptyAssignment, useAssignmentsStore, type Assignment } from "../../../../store/assignmentsStore";
+import * as client from "../../../client"
 
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
@@ -47,11 +48,34 @@ export default function AssignmentEditor() {
     "flex items-center gap-2 flex-grow";
 
   // saving
-  const saveAssignment = () => {
+  const saveAssignment = async () => {
     if (isNewAssignment) {
-      addAssignment({...emptyAssignment, title, course: String(cid), description, points, due, available, availableUntil} as Assignment);
+      const created = await client.createAssignmentForCourse(String(cid), {
+        ...emptyAssignment,
+        title,
+        course: String(cid),
+        description,
+        points,
+        due,
+        available,
+        availableUntil,
+      });
+      addAssignment(created);
+
+      // addAssignment({...emptyAssignment, title, course: String(cid), description, points, due, available, availableUntil} as Assignment);
     } else {
-      updateAssignment({...assignment, title, description, points, due, available, availableUntil,} as Assignment);
+      const saved = await client.updateAssignment({
+        ...assignment,
+        title,
+        description,
+        points,
+        due,
+        available,
+        availableUntil,
+      } as Assignment);
+      updateAssignment(saved);
+
+      // updateAssignment({...assignment, title, description, points, due, available, availableUntil,} as Assignment);
     }
 
     // console.log("Saving:", {
@@ -344,7 +368,6 @@ export default function AssignmentEditor() {
     </div>
   );
 }
-
 
 // import Link from "next/link";
 // import * as db from "../../../../database";

@@ -21,17 +21,23 @@ type AssignmentsStore = {
   addAssignment: (assignment: Assignment) => void;
   deleteAssignment: (assignmentId: string) => void;
   updateAssignment: (assignment: Assignment) => void;
+  setAssignments: (assignments: Assignment[]) => void;
 };
 
 export const useAssignmentsStore = create<AssignmentsStore>((set) => ({
   assignments: assignmentsJson,
 
+  // addAssignment: (assignment) =>
+  //   set((state) => ({
+  //     assignments: [
+  //       ...state.assignments,
+  //       { ...emptyAssignment, ...assignment, _id: crypto.randomUUID() },
+  //     ],
+  //   })),
+
   addAssignment: (assignment) =>
     set((state) => ({
-      assignments: [
-        ...state.assignments,
-        { ...emptyAssignment, ...assignment, _id: crypto.randomUUID() },
-      ],
+      assignments: [...state.assignments, assignment],
     })),
 
   deleteAssignment: (assignmentId) =>
@@ -43,6 +49,8 @@ export const useAssignmentsStore = create<AssignmentsStore>((set) => ({
     set((state) => ({
       assignments: state.assignments.map((a) => a._id === assignment._id ? assignment : a),
     })),
+
+  setAssignments: (assignments) => set({ assignments }),
 }));
 
 export { emptyAssignment };
